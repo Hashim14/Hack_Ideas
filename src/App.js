@@ -1,11 +1,16 @@
 import React from "react";
-import ChallengeCard from "./Components/challengeCard";
+import List from "./Components/list";
+
+// import ChallengeCard from "./Components/challengeCard";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hack Ideas</h1>
-      <ChallengeCard />
+      <div className="d-flex justify-content-center">
+        <h1>Hack Ideas</h1>
+      </div>
+     
+      <List />
     </div>
   );
 }
