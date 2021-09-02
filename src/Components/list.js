@@ -6,39 +6,46 @@ import CreateForm from "./createForm";
 
 const List = () => {
   const [list, setList] = useState(Tasks);
-
   const [voteOrder, setVoteOrder] = useState(false);
-  const [istoggle, setIsToggle] = useState(false);
-  const clonedList = [...list];
-  const voteToggle = () => {
-    // setIsToggle(!istoggle);
-    setVoteOrder(true);
-    console.log(voteOrder, "vote");
-  };
-
-  // useEffect(() => {
-  //   const sortByVote = list.sort((a, b) => {
-  //     return b.upVotes - a.upVotes;
-  //   });
-  //   console.log(sortByVote);
-  //   setList(sortByVote);
-  // }, [voteToggle]);
-
   const [dateOrder, setDateOrder] = useState(true);
-  const [dateToggle, setDateToggle] = useState(false);
+
+  const clonedList = [...list];
+
+  const voteToggle = () => {
+    voteOrder ? setVoteOrder(true) : setVoteOrder(true);
+    setDateOrder(false);
+  };
+  // console.log(voteOrder, "vote");
+  
   const sortDate = () => {
-    setDateToggle(!dateToggle);
-    setDateOrder(dateToggle);
-    console.log(dateOrder, "vote");
+    dateOrder ? setDateOrder(true) : setDateOrder(true);
+    setVoteOrder(false);
+    console.log(dateOrder, "date");
   };
 
   useEffect(() => {
-    const sortByDate = list.sort((a, b) => {
-      return b.createdDt - a.createdDt;
+    const sortByVote = list.sort((a, b) => {
+      if (b.upVotes > a.upVotes && voteOrder) {
+        return 1;
+      } else {
+        return -1;
+      }
     });
-    console.log(sortByDate);
+    console.log(sortByVote);
+    setList(sortByVote);
+  }, [voteOrder]);
+
+  useEffect(() => {
+    const sortByDate = list.sort((a, b) => {
+      if (b.createdDt > a.createdDt && dateOrder) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    console.log(sortByDate, "sort by date");
     setList(sortByDate);
-  }, [sortDate]);
+  }, [dateOrder]);
 
   const [visible, setVisible] = React.useState(false);
   const onCreate = (values) => {
@@ -48,10 +55,24 @@ const List = () => {
     setVisible(false);
   };
 
+  const [test, setTest] = useState(false);
+  const toggler = () => {
+    test ? setTest(false) : setTest(true);
+  };
+
   return (
     <>
       <div style={{ marginLeft: "250px", alignContent: "center" }}>
         <div className="d-flex justify-content-center">
+          {test ? (
+            <div type="button" onClick={toggler}>
+              test
+            </div>
+          ) : (
+            <div className="text text-muted" type="button" onClick={toggler}>
+              test
+            </div>
+          )}
           <Button
             type="primary"
             onClick={() => {
@@ -60,12 +81,20 @@ const List = () => {
           >
             Button
           </Button>
-          <div type="button" onClick={sortDate}>
+          <div
+            type="button"
+            className={dateOrder ? "fw-bolder" : "fw-light"}
+            onClick={sortDate}
+          >
             Created Date
           </div>
           <span className="text-muted"> | </span>
-          <div type="button" onClick={voteToggle}>
-            {voteOrder === false ? <mark>Up Vote</mark> : "Up Vote"}
+          <div
+            type="button"
+            className={voteOrder ? "fw-bolder" : "fw-light"}
+            onClick={voteToggle}
+          >
+            Up Vote
           </div>
         </div>
         {list.map((value) => {
