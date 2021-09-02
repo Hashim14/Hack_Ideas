@@ -14,13 +14,14 @@ const List = () => {
   const voteToggle = () => {
     voteOrder ? setVoteOrder(true) : setVoteOrder(true);
     setDateOrder(false);
+    console.log(dateOrder, "vote on date off");
   };
   // console.log(voteOrder, "vote");
-  
+
   const sortDate = () => {
     dateOrder ? setDateOrder(true) : setDateOrder(true);
     setVoteOrder(false);
-    console.log(dateOrder, "date");
+    console.log(voteOrder, "vote off date on");
   };
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const List = () => {
     });
     console.log(sortByVote);
     setList(sortByVote);
-  }, [voteOrder]);
+  }, [voteToggle]);
 
   useEffect(() => {
     const sortByDate = list.sort((a, b) => {
@@ -45,7 +46,7 @@ const List = () => {
     });
     console.log(sortByDate, "sort by date");
     setList(sortByDate);
-  }, [dateOrder]);
+  }, [sortDate]);
 
   const [visible, setVisible] = React.useState(false);
   const onCreate = (values) => {

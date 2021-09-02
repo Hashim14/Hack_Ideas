@@ -26,9 +26,9 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
         form={form}
         layout="vertical"
         name="form_in_modal"
-        initialValues={{
-          modifier: 'public',
-        }}
+        // initialValues={{
+        //   modifier: 'public',
+        // }}
       >
         <Form.Item
           name="title"
@@ -45,13 +45,13 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
         <Form.Item name="description" label="Description">
           <Input type="textarea" />
         </Form.Item>
-        {/* <Form.Item name="tags" className="collection-create-form_last-form-item">
+        <Form.Item name="tags" className="collection-create-form_last-form-item">
           <Radio.Group>
-            <Radio value="public">Tech</Radio>
-            <Radio value="private">Feature</Radio>
-            <Radio value="private">Login</Radio>
+            <Radio value="tech">Tech</Radio>
+            <Radio value="feature">Feature</Radio>
+            <Radio value="login">Login</Radio>
           </Radio.Group>
-        </Form.Item> */}
+        </Form.Item>
       </Form>
     </Modal>
   );
