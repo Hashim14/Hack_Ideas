@@ -49,8 +49,17 @@ const List = () => {
   }, [sortDate]);
 
   const [visible, setVisible] = React.useState(false);
+
+  const dayjs = require("dayjs");
+
+  let now = dayjs();
+
+  console.log(now.format("DD-MM-YYYY"));
+
   const onCreate = (values) => {
     console.log("Received values of form: ", values);
+    // const value = values.push({ createdDt: now.format("DD-MM-YYYY") });
+    // console.log(value);
     clonedList.push(values);
     setList(clonedList);
     setVisible(false);

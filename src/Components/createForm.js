@@ -1,7 +1,11 @@
-import React from 'react';
-import { Modal, Form, Input, Radio } from 'antd';
+import React from "react";
+import { Modal, Form, Input, Radio } from "antd";
 
 const CreateForm = ({ visible, onCreate, onCancel }) => {
+  const dayjs = require("dayjs");
+  let now = dayjs();
+  // console.log(now.format("DD-MM-YYYY"));
+  const createdDate = now.format("DD-MM-YYYY");
   const [form] = Form.useForm();
   return (
     <Modal
@@ -18,7 +22,7 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
             onCreate(values);
           })
           .catch((info) => {
-            console.log('Validate Failed:', info);
+            console.log("Validate Failed:", info);
           });
       }}
     >
@@ -36,7 +40,7 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
           rules={[
             {
               required: true,
-              message: 'Please input the title of collection!',
+              message: "Please input the title of collection!",
             },
           ]}
         >
@@ -45,17 +49,20 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
         <Form.Item name="description" label="Description">
           <Input type="textarea" />
         </Form.Item>
-        <Form.Item name="tags" className="collection-create-form_last-form-item">
+        <Form.Item
+          name="tags"
+          className="collection-create-form_last-form-item"
+        >
           <Radio.Group>
             <Radio value="tech">Tech</Radio>
             <Radio value="feature">Feature</Radio>
             <Radio value="login">Login</Radio>
           </Radio.Group>
         </Form.Item>
+        <Form.Item hidden name="createdDt" initialValue={createdDate} />
       </Form>
     </Modal>
   );
 };
-
 
 export default CreateForm;
