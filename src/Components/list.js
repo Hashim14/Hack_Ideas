@@ -12,21 +12,22 @@ const List = () => {
   const clonedList = [...list];
 
   const voteToggle = () => {
-    voteOrder ? setVoteOrder(true) : setVoteOrder(true);
-    setDateOrder(false);
+    voteOrder ? setDateOrder(false) : setVoteOrder(true);
+    setVoteOrder(true);
     console.log(dateOrder, "vote on date off");
   };
   // console.log(voteOrder, "vote");
 
   const sortDate = () => {
-    dateOrder ? setDateOrder(true) : setDateOrder(true);
-    setVoteOrder(false);
-    console.log(voteOrder, "vote off date on");
+    dateOrder ? setVoteOrder(false) : setDateOrder(true);
+    setDateOrder(true);
+    // setList(list);
+    console.log(dateOrder, "vote off date on");
   };
 
   useEffect(() => {
     const sortByVote = list.sort((a, b) => {
-      if (b.upVotes > a.upVotes && voteOrder) {
+      if (voteOrder && b.upVotes > a.upVotes) {
         return 1;
       } else {
         return -1;
@@ -34,19 +35,19 @@ const List = () => {
     });
     console.log(sortByVote);
     setList(sortByVote);
-  }, [voteToggle]);
+  }, [voteOrder]);
 
-  useEffect(() => {
-    const sortByDate = list.sort((a, b) => {
-      if (b.createdDt > a.createdDt && dateOrder) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
-    console.log(sortByDate, "sort by date");
-    setList(sortByDate);
-  }, [sortDate]);
+  // useEffect(() => {
+  //   const sortByDate = list.sort((a, b) => {
+  //     if (b.createdDt > a.createdDt && dateOrder) {
+  //       return 1;
+  //     } else {
+  //       return -1;
+  //     }
+  //   });
+  //   console.log(sortByDate, "sort by date");
+  //   setList(sortByDate);
+  // }, [dateOrder]);
 
   const [visible, setVisible] = React.useState(false);
 
@@ -58,23 +59,21 @@ const List = () => {
 
   const onCreate = (values) => {
     console.log("Received values of form: ", values);
-    // const value = values.push({ createdDt: now.format("DD-MM-YYYY") });
-    // console.log(value);
     clonedList.push(values);
     setList(clonedList);
     setVisible(false);
   };
 
-  const [test, setTest] = useState(false);
-  const toggler = () => {
-    test ? setTest(false) : setTest(true);
-  };
+  // const [test, setTest] = useState(false);
+  // const toggler = () => {
+  //   test ? setTest(false) : setTest(true);
+  // };
 
   return (
     <>
       <div style={{ marginLeft: "250px", alignContent: "center" }}>
         <div className="d-flex justify-content-center">
-          {test ? (
+          {/* {test ? (
             <div type="button" onClick={toggler}>
               test
             </div>
@@ -82,7 +81,7 @@ const List = () => {
             <div className="text text-muted" type="button" onClick={toggler}>
               test
             </div>
-          )}
+          )} */}
           <Button
             type="primary"
             onClick={() => {
@@ -107,8 +106,8 @@ const List = () => {
             Up Vote
           </div>
         </div>
-        {list.map((value) => {
-          return <ChallengeCard value={value} />;
+        {list.map((value, key) => {
+          return <ChallengeCard key={value.id} value={value} />;
         })}
       </div>
       <CreateForm

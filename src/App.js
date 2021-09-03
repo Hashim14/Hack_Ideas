@@ -4,7 +4,7 @@ import LoginPage from "./Components/loginPage";
 
 function App() {
   const [id, setId] = React.useState("");
-  const [homePage, setHomePage] = React.useState(true);
+  const [homePage, setHomePage] = React.useState(false);
   const [loginPage, setLoginPage] = React.useState(true);
 
   const handleChange = (e) => {
@@ -39,9 +39,9 @@ function App() {
       <div className="d-flex justify-content-center">
         <h1>Hack Ideas</h1>
       </div>
-      {/* {loginPage ? (
+      {loginPage ? (
         <LoginPage handleChange={handleChange} handleSubmit={handleSubmit} />
-      ) : null} */}
+      ) : null}
       {homePage && <List />}
     </div>
   );

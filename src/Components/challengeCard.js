@@ -1,9 +1,19 @@
 import React from "react";
+import { CaretUpFilled } from "@ant-design/icons";
+import { Button } from "antd";
 
 const ChallengeCard = ({ value }) => {
+  const [voteToggle, setVoteToggle] = React.useState(false);
   const upVote = () => {
-    console.log("upVote Clicked", value.upVotes += 1);
+    setVoteToggle(true);
+    console.log("upVote Clicked", (value.upVotes += 1));
   };
+  const [voteCount, setVoteCount] = React.useState(value.upVotes);
+  React.useEffect(() => {
+    const upVoteCount = (value.upVotes += 0);
+    setVoteCount(upVoteCount);
+  }, [voteToggle]);
+
   return (
     <div>
       {/* {List.map((value) => {
@@ -17,9 +27,9 @@ const ChallengeCard = ({ value }) => {
           <p className="card-text">{value.description}</p>
           <div className="d-flex justify-content-between">
             <span className="badge bg-success">{value.tags}</span>
-            <div type="button" onClick={upVote}>
-              <i className="bi bi-triangle-fill"> UPVOTE {value.upVotes}</i>
-            </div>
+            <Button icon={<CaretUpFilled />} onClick={upVote}>
+              UPVOTE {voteCount}
+            </Button>
           </div>
         </div>
       </div>

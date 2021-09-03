@@ -6,6 +6,7 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
   let now = dayjs();
   // console.log(now.format("DD-MM-YYYY"));
   const createdDate = now.format("DD-MM-YYYY");
+  const upVote = 0;
   const [form] = Form.useForm();
   return (
     <Modal
@@ -60,6 +61,7 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
           </Radio.Group>
         </Form.Item>
         <Form.Item hidden name="createdDt" initialValue={createdDate} />
+        <Form.Item hidden name="upVotes" initialValue={upVote} />
       </Form>
     </Modal>
   );
