@@ -1,6 +1,6 @@
 # Hack_Ideas
 
-This is a React JS App for dealing with Add/Manage and UpVoting ideas.
+This is a React JS App that allows usuers to Login, Add/Manage and UpVoting ideas. The list of ideas can be sorted between Newest/Popular. A new idea can be added and it can aswell be sorted and upvoted.
 
 ## Available Scripts
 
