@@ -12,22 +12,10 @@ const List = () => {
   const clonedList = [...list];
 
   const voteToggle = () => {
-    voteOrder ? setDateOrder(false) : setVoteOrder(true);
-    setVoteOrder(true);
-    console.log(dateOrder, "vote on date off");
-  };
-  // console.log(voteOrder, "vote");
-
-  const sortDate = () => {
-    dateOrder ? setVoteOrder(false) : setDateOrder(true);
-    setDateOrder(true);
-    // setList(list);
-    console.log(dateOrder, "vote off date on");
-  };
-
-  useEffect(() => {
-    const sortByVote = list.sort((a, b) => {
-      if (voteOrder && b.upVotes > a.upVotes) {
+    voteOrder ? setVoteOrder(true) : setVoteOrder(true);
+    setDateOrder(false);
+    const sortByVote = clonedList.sort((a, b) => {
+      if (b.upVotes > a.upVotes) {
         return 1;
       } else {
         return -1;
@@ -35,7 +23,32 @@ const List = () => {
     });
     console.log(sortByVote);
     setList(sortByVote);
-  }, [voteOrder]);
+    console.log(dateOrder, "vote on date off");
+  };
+  // console.log(voteOrder, "vote");
+
+  const sortDate = () => {
+    dateOrder ? setDateOrder(true) : setDateOrder(true);
+    setVoteOrder(false);
+    // setList(list);
+    const sortByDate = list.sort((a, b) => {
+      // if (b.createdDt > a.createdDt && dateOrder) {
+      //   return 1;
+      // } else {
+      //   return -1;
+      // }
+      var aa = a.createdDt.split("-").reverse().join(),
+        bb = b.createdDt.split("-").reverse().join();
+      return aa > bb ? -1 : aa < bb ? 1 : 0;
+    });
+    console.log(sortByDate, "sort by date");
+    setList(sortByDate);
+    console.log(dateOrder, "vote off date on");
+  };
+
+  // useEffect(() => {
+
+  // }, [voteOrder]);
 
   // useEffect(() => {
   //   const sortByDate = list.sort((a, b) => {
@@ -70,18 +83,9 @@ const List = () => {
   // };
 
   return (
-    <>
+    <div>
       <div style={{ marginLeft: "250px", alignContent: "center" }}>
         <div className="d-flex justify-content-center">
-          {/* {test ? (
-            <div type="button" onClick={toggler}>
-              test
-            </div>
-          ) : (
-            <div className="text text-muted" type="button" onClick={toggler}>
-              test
-            </div>
-          )} */}
           <Button
             type="primary"
             onClick={() => {
@@ -117,7 +121,7 @@ const List = () => {
           setVisible(false);
         }}
       />
-    </>
+    </div>
   );
 };
 

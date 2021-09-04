@@ -41,18 +41,33 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
           rules={[
             {
               required: true,
-              message: "Please input the title of collection!",
+              message: "Please input the Title of Idea!",
             },
           ]}
         >
           <Input />
         </Form.Item>
-        <Form.Item name="description" label="Description">
+        <Form.Item
+          name="description"
+          label="Description"
+          rules={[
+            {
+              required: true,
+              message: "Please input the Title of Idea!",
+            },
+          ]}
+        >
           <Input type="textarea" />
         </Form.Item>
         <Form.Item
           name="tags"
           className="collection-create-form_last-form-item"
+          rules={[
+            {
+              required: true,
+              message: "Please choose a tag!",
+            },
+          ]}
         >
           <Radio.Group>
             <Radio value="tech">Tech</Radio>

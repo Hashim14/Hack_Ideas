@@ -1,11 +1,12 @@
 import React from "react";
+import "./App.css";
 import List from "./Components/list";
 import LoginPage from "./Components/loginPage";
 
 function App() {
   const [id, setId] = React.useState("");
-  const [homePage, setHomePage] = React.useState(false);
-  const [loginPage, setLoginPage] = React.useState(true);
+  const [homePage, setHomePage] = React.useState(true);
+  const [loginPage, setLoginPage] = React.useState(false);
 
   const handleChange = (e) => {
     setId(e.target.value);
@@ -13,9 +14,9 @@ function App() {
   };
 
   const HandlError = () => {
-     setLoginPage(true);
+    setLoginPage(true);
     console.log("error test");
-    return (<span>Error Message</span>);
+    return <span>Error Message</span>;
   };
 
   const initialValue = { id: "adminpass" };
@@ -28,20 +29,17 @@ function App() {
   // const dayjs = require('dayjs');
 
   // let now = dayjs();
-  
+
   // console.log(now.format("DD MM YYYY"));
-  
-
-
 
   return (
     <div className="App">
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center p-3">
         <h1>Hack Ideas</h1>
       </div>
-      {loginPage ? (
+      {/* {loginPage ? (
         <LoginPage handleChange={handleChange} handleSubmit={handleSubmit} />
-      ) : null}
+      ) : null} */}
       {homePage && <List />}
     </div>
   );

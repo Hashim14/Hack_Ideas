@@ -4,7 +4,8 @@
         "title": "Create App",
         "description": "The main page should have the Header",
         "tags": "Tech",
-        "createdDt": "02-09-2021",
+        "bgColor": "bg-warning text-dark",
+        "createdDt": "01-09-2021",
         "upVotes": 2
     },
     {
@@ -12,7 +13,8 @@
         "title": "Display List",
         "description": "The list contains the details and upvote button",
         "tags": "Feature",
-        "createdDt": "01-09-2021",
+        "bgColor": "bg-info text-dark",
+        "createdDt": "02-09-2021",
         "upVotes": 4
     },
     {
@@ -20,6 +22,7 @@
         "title": "Sort Features",
         "description": "The List should be sortable by Vote and Created Date",
         "tags": "Feature",
+        "bgColor": "bg-info text-dark",
         "createdDt": "30-08-2021",
         "upVotes": 5
     },
@@ -28,6 +31,7 @@
         "title": "Login Screen",
         "description": "Login by Email",
         "tags": "Login",
+        "bgColor": "bg-success",
         "createdDt": "29-08-2021",
         "upVotes": 3
     }
