@@ -1,9 +1,8 @@
 import React from "react";
 import { CaretUpFilled } from "@ant-design/icons";
-import { Button, Badge, Space } from "antd";
+import { Button } from "antd";
 
 const ChallengeCard = ({ value }) => {
-  // console.log(value,"value read")
   const [voteToggle, setVoteToggle] = React.useState(false);
   const upVote = () => {
     setVoteToggle(!voteToggle);
@@ -14,9 +13,7 @@ const ChallengeCard = ({ value }) => {
   React.useEffect(() => {
     const upVoteCount = value.upVotes;
     setVoteCount(upVoteCount);
-    console.log("upvote hook");
   }, [voteToggle]);
-  const bgColor = value.tags;
   return (
     <div className="d-flex justify-content-center">
       <div className="card w-50 m-3">

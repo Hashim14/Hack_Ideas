@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ChallengeCard from "./challengeCard";
 import Tasks from "../challenges.json";
-import { Button, Tooltip } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import CreateForm from "./createForm";
 
 const List = () => {
@@ -24,9 +23,7 @@ const List = () => {
         bb = b.createdDt.split("-").reverse().join();
       return aa > bb ? -1 : aa < bb ? 1 : 0;
     });
-    console.log(sortByDate, "sort by date");
     setList(sortByDate);
-    console.log(dateOrder, "vote off date on");
   };
 
   const voteToggle = () => {
@@ -39,13 +36,11 @@ const List = () => {
         return -1;
       }
     });
-    console.log(sortByVote);
+
     setList(sortByVote);
-    console.log(dateOrder, "vote on date off");
   };
 
   const onCreate = (values) => {
-    console.log("Received values of form: ", values);
     clonedList.push(values);
     setList(clonedList);
     setVisible(false);

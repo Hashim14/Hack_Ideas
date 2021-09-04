@@ -4,7 +4,6 @@ import { Modal, Form, Input, Radio } from "antd";
 const CreateForm = ({ visible, onCreate, onCancel }) => {
   const dayjs = require("dayjs");
   let now = dayjs();
-  // console.log(now.format("DD-MM-YYYY"));
   const createdDate = now.format("DD-MM-YYYY");
   const upVote = 0;
   const [form] = Form.useForm();
@@ -31,9 +30,6 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
         form={form}
         layout="vertical"
         name="form_in_modal"
-        // initialValues={{
-        //   modifier: 'public',
-        // }}
       >
         <Form.Item
           name="title"

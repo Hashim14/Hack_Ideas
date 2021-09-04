@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "zip": "npm-build-zip"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^17.0.19"
+    "@types/react": "^17.0.19",
+    "npm-build-zip": "^1.0.3"
   }
 }

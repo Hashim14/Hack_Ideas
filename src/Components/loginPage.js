@@ -1,5 +1,5 @@
 import React from "react";
-import { AutoComplete, Input } from "antd";
+import { Input } from "antd";
 import { Button } from "antd";
 
 const LoginPage = ({ handleChange, handleSubmit }) => {

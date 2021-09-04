@@ -12,12 +12,10 @@ function App() {
 
   const handleChange = (e) => {
     setId(e.target.value);
-    console.log(id);
   };
 
   const HandlError = () => {
     setLoginPage(true);
-    console.log("error test");
     return <span>Error Message</span>;
   };
 
@@ -27,12 +25,6 @@ function App() {
       ? setHomePage(true) || setLoginPage(false)
       : HandlError();
   };
-
-  // const dayjs = require('dayjs');
-
-  // let now = dayjs();
-
-  // console.log(now.format("DD MM YYYY"));
 
   return (
     <div className="App">
