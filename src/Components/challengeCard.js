@@ -19,8 +19,6 @@ const ChallengeCard = ({ value }) => {
   const bgColor = value.tags;
   return (
     <div className="d-flex justify-content-center">
-      {/* {List.map((value) => {
-        return ( */}
       <div className="card w-50 m-3">
         <div className="card-body">
           <div className="d-flex justify-content-between">
@@ -39,8 +37,6 @@ const ChallengeCard = ({ value }) => {
           </div>
         </div>
       </div>
-      {/* );
-      })} */}
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ChallengeCard from "./challengeCard";
 import Tasks from "../challenges.json";
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
 import CreateForm from "./createForm";
 
 const List = () => {
@@ -82,7 +83,7 @@ const List = () => {
             POPULAR
           </div>
         </div>
-        <div style={{ maxHeight: "calc(125vh - 350px)", overflowX: "hidden" }}>
+        <div style={{ maxHeight: "calc(125vh - 325px)", overflowX: "hidden" }}>
           {list.map((value, key) => {
             return <ChallengeCard key={value.id} value={value} />;
           })}
