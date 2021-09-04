@@ -5,8 +5,8 @@ import LoginPage from "./Components/loginPage";
 
 function App() {
   const [id, setId] = React.useState("");
-  const [homePage, setHomePage] = React.useState(true);
-  const [loginPage, setLoginPage] = React.useState(false);
+  const [homePage, setHomePage] = React.useState(false);
+  const [loginPage, setLoginPage] = React.useState(true);
 
   const handleChange = (e) => {
     setId(e.target.value);
@@ -34,12 +34,12 @@ function App() {
 
   return (
     <div className="App">
-      <div className="d-flex justify-content-center p-3">
-        <h1>Hack Ideas</h1>
+      <div className="d-flex justify-content-center p-5 pb-2">
+        <h1 className="fw-light">HACK IDEAS</h1>
       </div>
-      {/* {loginPage ? (
+      {loginPage ? (
         <LoginPage handleChange={handleChange} handleSubmit={handleSubmit} />
-      ) : null} */}
+      ) : null}
       {homePage && <List />}
     </div>
   );

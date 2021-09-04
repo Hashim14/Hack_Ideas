@@ -8,8 +8,25 @@ const List = () => {
   const [list, setList] = useState(Tasks);
   const [voteOrder, setVoteOrder] = useState(false);
   const [dateOrder, setDateOrder] = useState(true);
-
+  const [visible, setVisible] = React.useState(false);
   const clonedList = [...list];
+
+  useEffect(() => {
+    sortDate();
+  }, []);
+
+  const sortDate = () => {
+    dateOrder ? setDateOrder(true) : setDateOrder(true);
+    setVoteOrder(false);
+    const sortByDate = clonedList.sort((a, b) => {
+      var aa = a.createdDt.split("-").reverse().join(),
+        bb = b.createdDt.split("-").reverse().join();
+      return aa > bb ? -1 : aa < bb ? 1 : 0;
+    });
+    console.log(sortByDate, "sort by date");
+    setList(sortByDate);
+    console.log(dateOrder, "vote off date on");
+  };
 
   const voteToggle = () => {
     voteOrder ? setVoteOrder(true) : setVoteOrder(true);
@@ -25,50 +42,6 @@ const List = () => {
     setList(sortByVote);
     console.log(dateOrder, "vote on date off");
   };
-  // console.log(voteOrder, "vote");
-
-  const sortDate = () => {
-    dateOrder ? setDateOrder(true) : setDateOrder(true);
-    setVoteOrder(false);
-    // setList(list);
-    const sortByDate = list.sort((a, b) => {
-      // if (b.createdDt > a.createdDt && dateOrder) {
-      //   return 1;
-      // } else {
-      //   return -1;
-      // }
-      var aa = a.createdDt.split("-").reverse().join(),
-        bb = b.createdDt.split("-").reverse().join();
-      return aa > bb ? -1 : aa < bb ? 1 : 0;
-    });
-    console.log(sortByDate, "sort by date");
-    setList(sortByDate);
-    console.log(dateOrder, "vote off date on");
-  };
-
-  // useEffect(() => {
-
-  // }, [voteOrder]);
-
-  // useEffect(() => {
-  //   const sortByDate = list.sort((a, b) => {
-  //     if (b.createdDt > a.createdDt && dateOrder) {
-  //       return 1;
-  //     } else {
-  //       return -1;
-  //     }
-  //   });
-  //   console.log(sortByDate, "sort by date");
-  //   setList(sortByDate);
-  // }, [dateOrder]);
-
-  const [visible, setVisible] = React.useState(false);
-
-  const dayjs = require("dayjs");
-
-  let now = dayjs();
-
-  console.log(now.format("DD-MM-YYYY"));
 
   const onCreate = (values) => {
     console.log("Received values of form: ", values);
@@ -77,42 +50,43 @@ const List = () => {
     setVisible(false);
   };
 
-  // const [test, setTest] = useState(false);
-  // const toggler = () => {
-  //   test ? setTest(false) : setTest(true);
-  // };
-
   return (
     <div>
-      <div style={{ marginLeft: "250px", alignContent: "center" }}>
-        <div className="d-flex justify-content-center">
+      <div style={{ alignContent: "center" }}>
+        <div
+          className="d-flex justify-content-center"
+          style={{ marginLeft: "29vw" }}
+        >
           <Button
-            type="primary"
             onClick={() => {
               setVisible(true);
             }}
+            style={{ marginRight: "10px" }}
           >
-            Button
+            ADD IDEAS
           </Button>
           <div
             type="button"
             className={dateOrder ? "fw-bolder" : "fw-light"}
             onClick={sortDate}
+            style={{ marginTop: "5px", marginLeft: "6px" }}
           >
-            Created Date
+            NEWEST
           </div>
-          <span className="text-muted"> | </span>
           <div
             type="button"
             className={voteOrder ? "fw-bolder" : "fw-light"}
             onClick={voteToggle}
+            style={{ marginTop: "5px", marginLeft: "4px" }}
           >
-            Up Vote
+            POPULAR
           </div>
         </div>
-        {list.map((value, key) => {
-          return <ChallengeCard key={value.id} value={value} />;
-        })}
+        <div style={{ maxHeight: "calc(125vh - 350px)", overflowX: "hidden" }}>
+          {list.map((value, key) => {
+            return <ChallengeCard key={value.id} value={value} />;
+          })}
+        </div>
       </div>
       <CreateForm
         visible={visible}
